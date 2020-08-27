@@ -1,0 +1,71 @@
+﻿@model MovieCrusier.Models.Movies
+
+@{
+    ViewData["Title"] = "AddNewMovie";
+}
+
+<h1>AddNewMovie</h1>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="AddNewMovie">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MovieName" class="control-label">Title</label>
+                <input asp-for="MovieName" class="form-control"  />
+                <span asp-validation-for="MovieName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoxOffice" class="control-label">Gross($)</label>
+                <input asp-for="BoxOffice" class="form-control"  pattern="[0-9]{1,7}" />
+                <span asp-validation-for="BoxOffice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfLaunch" class="control-label">Date of Launch</label>
+                <input asp-for="DateOfLaunch" class="form-control" type="date" title="DateOfLaunch is Required"  />
+                <span asp-validation-for="DateOfLaunch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Active" class="control-label"></label>
+            
+                   <div class="col-md-6 form-inline">
+                       <input asp-for="Active" type="radio" class="form-control" value="Yes" />Yes
+                      &nbsp;&nbsp; <input asp-for="Active" type="radio" class="form-control" value="No" />No
+                   </div>
+           
+                <span asp-validation-for="Active" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genre" class="control-label"></label>
+                <select asp-for="Genre" class="form-control"  >
+                    <option value="select" selected="" disabled>Select..</option>
+                    <option value="Superhero">Superhero</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HasTeaser" class="control-label"></label>
+                <select asp-for="HasTeaser" class="form-control" >
+                    <option value="select" selected="" disabled>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <span asp-validation-for="HasTeaser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Admin">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
